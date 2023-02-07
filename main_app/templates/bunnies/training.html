@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>bunny Training</h1>
+<form action="{% url 'add_strength' pk=bunny.pk %}" method="post">
+  {% csrf_token %}
+  <input type="submit" value="Add Strength">
+</form>
+
+
+<div class="card">
+  <div class="content">
+    name:{{ bunny.name }}
+    Level:{{bunny.level}}
+    HP: {{bunny.hp}}
+    INT:{{bunny.intell}}
+ DEF:{{bunny.defense}}
+ STR:{{bunny.strength}}
+ SPD:{{bunny.speed}}
+ EXP:{{bunny.experience}}
+
+  </div>
+</div>
+
+
+{% endblock %}

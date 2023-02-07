@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>bunny List</h1>
+
+{% for bunny in bunnies %}
+<div class="card">
+  <a href='/bunnies/{{ bunny.id }}'>
+  <div class="content">
+    {{bunny.name}}
+  </div>
+</a>
+</div>
+
+
+{% endfor %}
+
+{% endblock %}

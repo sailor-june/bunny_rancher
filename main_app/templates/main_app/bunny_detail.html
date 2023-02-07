@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>bunny Detail</h1>
+<a href='/bunnies/train/{{bunny.id}}/'>train bun</a>
+
+<div class="card">
+  <div class="content">
+    name:{{ bunny.name }}
+    Level:{{bunny.level}}
+    HP: {{bunny.hp}}
+    INT:{{bunny.intell}}
+ DEF:{{bunny.defense}}
+ STR:{{bunny.strength}}
+ SPD:{{bunny.speed}}
+ EXP:{{bunny.experience}}
+
+  </div>
+</div>
+
+
+{% endblock %}
