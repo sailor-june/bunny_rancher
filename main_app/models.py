@@ -15,14 +15,57 @@ class Bunny(models.Model):
         experience  =  models.IntegerField()
         owner = models.CharField(max_length=20)
         name  = models.CharField(max_length=20)
+        t_days = models.IntegerField()
         active = models.BooleanField()
 
-
-       
         def add_str(self):
-                self.strength +=(random.randint(5,10))
-                self.speed -=(random.randint(1,4))
+                if self.t_days==0:
+                        return
+                else:
+                        self.t_days -=1
+                        dice_a = random.randint(5,8)
+                        dice_b = random.randint(1,4)
+                        self.strength +=(dice_a)
+                        self.speed -=(dice_b)
+                        self.experience += (dice_a/dice_b)
         
+        def add_spd(self):
+                if self.t_days==0:
+                        return
+                else:
+                        self.t_days -=1
+                        dice_a = random.randint(5,8)
+                        dice_b = random.randint(1,4)
+                        self.experience += (dice_a/dice_b)
+                        self.speed +=(dice_a)
+                        self.intell -=(dice_b)
+       
+        def add_int(self):
+                if self.t_days==0:
+                        return
+                else:
+                        self.t_days -=1
+                        dice_a = random.randint(5,8)
+                        dice_b = random.randint(1,4)
+                        self.experience += (dice_a/dice_b)
+                        self.intell +=(dice_a)
+                        self.defense -=(dice_b)
+        
+        def add_def(self):
+                if self.t_days==0:
+                        return
+                else:
+                        self.t_days -=1
+                        dice_a = random.randint(5,8)
+                        dice_b = random.randint(1,4)
+                        self.experience += (dice_a/dice_b)
+                        self.defense +=(dice_a)
+                        self.strength -=(dice_b)
+
+        def put_away(self):
+                self.active=False 
+        def take_out(self):
+                self.active=True  
 # bunnies= [
 #     Bunny('Alpha', 1, 0, 10, 5, 5, 5, 5, 'RED', 0000, False),
 #     Bunny('Alpha', 1, 0, 10, 5, 5, 5, 5, 'BLUE', 0000, False),
