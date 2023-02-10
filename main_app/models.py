@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+
 from django.db import models
 import random
 
@@ -13,10 +15,14 @@ class Bunny(models.Model):
         speed  =models.IntegerField()
         color = models.CharField(max_length=20)
         experience  =  models.IntegerField()
-        owner = models.CharField(max_length=20)
-        name  = models.CharField(max_length=20)
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        name  = models.CharField(max_length=20, unique=True)
         t_days = models.IntegerField()
         active = models.BooleanField()
+        parent_1 = models.CharField(max_length=200)
+        parent_2= models.CharField(max_length=200)
+
+
 
         def add_str(self):
                 if self.t_days==0:

@@ -4,17 +4,22 @@
 <a href='/bunnies/train/{{bunny.id}}/'>train bun</a>
 
 <div class="card">
-  <div class="content">
-    name:{{ bunny.name }}
-    Level:{{bunny.level}}
-    HP: {{bunny.hp}}
-    INT:{{bunny.intell}}
- DEF:{{bunny.defense}}
- STR:{{bunny.strength}}
- SPD:{{bunny.speed}}
- EXP:{{bunny.experience}}
-
+  <div class="content columns">
+    
+    <div class="card column is-one-third">
+    <p class="button is-warning">HP: {{bunny.hp}}</p>
+    <p class="button is-link">INT: {{bunny.intell}}</p>
+    <p class="button is-success">DEF: {{bunny.defense}}</p>
+    <p class="button is-primary">STR: {{bunny.strength}}</p>
+    <p class="button is-info">SPD: {{bunny.speed}}</p>
+    <p class="button is-danger">EXP: {{bunny.experience}}</p>
+   <div class='box is-link'> PARENTS: <section class='button is-danger is-light'>{{bunny.parent_1}}</section> , <section class='button is-primary is-light'>{{bunny.parent_2}}</section></div>
   </div>
+  <div class='card column is-half'>
+    name: {{ bunny.name }}
+    Level: {{bunny.level}}
+    </div>
+</div>
 </div>
 
 

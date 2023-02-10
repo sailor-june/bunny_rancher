@@ -1,10 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 
 <h1>bunny List</h1>
-<a href="/home">return</a>
+
+<div class='block is-centered'>
+  <div class= 'column is-half'>
 {% for bunny in bunnies %}
 
-<div class="card">
+<div class="card column has-text-centered">
   <a href='/bunnies/{{ bunny.id }}'>
   <div class="content">
     {{bunny.name}}
@@ -14,5 +16,6 @@
 
 
 {% endfor %}
-
+<a href="/home">return</a></div>
+</div>
 {% endblock %}

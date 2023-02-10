@@ -1,10 +1,39 @@
-{% extends 'base.html' %}
-{% block content %}
-<h1>HOME</h1>
-------BARN--------<br>
-<a href='/bunnies'>-view buns</a> <br>
-<a href='/bunnies/change_bunny'>Change active bun</a> <br>
-------TOWN?-------<br>
-<a href='/generate'>-get buns</a><br>
-<a href='/bunnies/train/{{bunny.id}}'>-train buns</a> <br>
-{% endblock %}
+{% extends 'base.html' %} {% block content %}
+<div class="box">
+  <h1>HOME</h1>
+  <a href="{% url 'logout' %}" class="is-centered">logout </a>
+</div>
+{% if user.is_authenticated %}
+<div class="container columns is-2 is-centered">
+  <div class="barn card column is-one-third">
+    <p class="box has-text-centered">------BARN--------</p>
+    <br />
+    <div class="columns">
+      <a href="/bunnies" class="button is-link column">-view buns</a> <br />
+      <a href="/bunnies/change_bunny" class="button is-link column">
+        -Change active bun</a>
+      <br/>
+      <a href="/bunnies/combine" class="button is-link column"> -Combine buns </a><br />
+    </div>
+  </div>
+
+  <div class="town card column is-one-third">
+    <p class="box has-text-centered">------TOWN?-------</p>
+    <br />
+    <div class="columns">
+      <a href="/generate" class="button is-link column">-get buns</a><br />
+      <a href="/bunnies/train/{{bunny.id}}" class="button is-link column">
+        -train buns</a
+      >
+      <br />
+    </div>
+  </div>
+
+</div>
+
+
+{% else %}
+
+<a href="{% url 'signup' %} ">sign up </a>
+<a href="{% url 'login' %}">login </a>
+{% endif %} {% endblock %}

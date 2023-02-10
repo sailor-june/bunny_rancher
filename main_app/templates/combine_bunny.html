@@ -1,0 +1,117 @@
+{% extends 'base.html' %}{% block content %}
+
+<h2>Combine Bunnies</h2>
+
+
+
+{% if new_bunny %}
+<form action="/add/" method="post">
+  {% csrf_token %}
+  <table>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>HP</td>
+      <td>{{ new_bunny.hp }}</td>
+      <input type="hidden" name="hp" value="{{ new_bunny.hp }}" />
+    </tr>
+    <tr>
+      <td>Level</td>
+      <td>{{ new_bunny.level }}</td>
+      <input type="hidden" name="level" value="{{ new_bunny.level }}" />
+    </tr>
+    <tr>
+      <td>Intelligence</td>
+      <td>{{ new_bunny.intell }}</td>
+      <input type="hidden" name="intell" value="{{ new_bunny.intell }}" />
+    </tr>
+    <tr>
+      <td>Defense</td>
+      <td>{{ new_bunny.defense }}</td>
+      <input type="hidden" name="defense" value="{{ new_bunny.defense }}" />
+    </tr>
+    <tr>
+      <td>Strength</td>
+      <td>{{ new_bunny.strength }}</td>
+      <input type="hidden" name="strength" value="{{ new_bunny.strength }}" />
+    </tr>
+    <tr>
+      <td>Speed</td>
+      <td>{{ new_bunny.speed }}</td>
+      <input type="hidden" name="speed" value="{{ new_bunny.speed }}" />
+    </tr>
+    <tr>
+      <td>Color</td>
+      <td>{{ new_bunny.color }}</td>
+      <input type="hidden" name="color" value="{{ new_bunny.color }}" />
+    </tr>
+    <tr>
+      <td>Parents</td>
+      <td>{{ bunny_1.name}} , {{buny_2.name}} </td>
+      <input
+        type="hidden"
+        name="parent_1"
+        value="{{bunny_1.name}}:{{bunny_1.id}}"
+      />
+      <input
+        type="hidden"
+        name="parent_2"
+        value="{{bunny_2.name}}:{{bunny_2.id}}"
+      />
+    </tr>
+    <tr>
+      <td>Experience</td>
+      <td>{{ new_bunny.experience }}</td>
+      <input
+        type="hidden"
+        name="experience"
+        value="{{ new_bunny.experience }}"
+      />
+    </tr>
+    <input type="hidden" name="t_days" value="10" />
+  </table>
+  <input
+    type="text"
+    name="name" id='name_field'> Enter a name </input>
+    <input
+    type="hidden"
+    name="bunny_id"
+    
+    value="{{ new_bunny.id }}"/>
+  
+  <label for="confirm_checkbox">Are you sure you want to combine {{bunny_1.name}} and {{bunny_2.name}}? this action cannot be undone. </label>
+<input type="checkbox" id="confirm_checkbox" name="confirm">
+  <input type="submit" value="Save Bunny" id='submit_button' disabled/>
+</form>
+
+{% else %}
+<form method="post">
+  {% csrf_token %}
+  <p>Select Bunny 1:</p>
+  <select name="bunny_1">
+    {% for bunny in bunnies %}
+    <option value="{{ bunny.id }}">{{ bunny.name }}</option>
+    {% endfor %}
+  </select>
+  <p>Select Bunny 2:</p>
+  <select name="bunny_2">
+    {% for bunny in bunnies %}
+    <option value="{{ bunny.id }}">{{ bunny.name }}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Combine" />
+</form>
+
+{% endif %}
+<a href='/home'>return</a>
+<script>
+  const name_field = document.getElementById('name_field')
+  const confirmCheckbox = document.getElementById('confirm_checkbox');
+  const submitButton = document.getElementById('submit_button');
+  confirmCheckbox.addEventListener('change', function() {
+    submitButton.disabled = !this.checked;
+  });
+</script>
+{%endblock%}

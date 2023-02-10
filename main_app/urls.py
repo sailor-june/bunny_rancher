@@ -13,7 +13,6 @@ urlpatterns = [
     path('bunny/<int:pk>/add_intell/', views.add_intell, name='add_intell'),        
     path('generate/', views.create_bunny, name='generate_bunny'),
     path('add/', views.add_bunny, name='add_bunny'),
-    path('bunnies/change_bunny/', views.change_bunny, name='change_bunny')
-        
-        
-        ]
+    path('bunnies/change_bunny/', views.change_bunny, name='change_bunny'),
+    path('bunnies/combine/', views.combine_bunny, name='combine_bunnies'), 
+    path('sign_up/', views.sign_up, name='signup')    ]
