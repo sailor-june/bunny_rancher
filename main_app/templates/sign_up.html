@@ -1,13 +1,13 @@
 {%extends 'base.html' %}
 {%block content %}
-<h1>sign up</h1>
+<h1 class="box">sign up</h1>
 {% if error %}
 <p> {{error}}</p>
 {%endif%}
-<form action="{% url 'signup' %}" method="POST">
+<form action="{% url 'signup' %}" method="POST" class="card has-text-centered">
 {% csrf_token %}
 {{form.as_p}}
-<input type="submit" value="signup">
+<input type="submit" value="signup" class='box'>
 </form>
 <a href="{% url 'home' %}" >return </a>
 {%endblock%}

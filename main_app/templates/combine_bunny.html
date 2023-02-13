@@ -1,111 +1,106 @@
 {% extends 'base.html' %}{% block content %}
-
+<div class="box has-text-centered">
 <h2>Combine Bunnies</h2>
-
+</div>
 
 
 {% if new_bunny %}
-<form action="/add/" method="post">
+<form action="/add/" method="post" class="card has-text-centered">
   {% csrf_token %}
-  <table>
-    <tr>
-      <th>Attribute</th>
-      <th>Value</th>
-    </tr>
-    <tr>
-      <td>HP</td>
-      <td>{{ new_bunny.hp }}</td>
+  <p class="box has-background-warning ">HP: {{new_bunny.hp}}</p>
       <input type="hidden" name="hp" value="{{ new_bunny.hp }}" />
-    </tr>
-    <tr>
-      <td>Level</td>
-      <td>{{ new_bunny.level }}</td>
+ 
       <input type="hidden" name="level" value="{{ new_bunny.level }}" />
-    </tr>
-    <tr>
-      <td>Intelligence</td>
-      <td>{{ new_bunny.intell }}</td>
+  
+      <p class="box has-background-link has-text-info-light">INT: </p>
       <input type="hidden" name="intell" value="{{ new_bunny.intell }}" />
-    </tr>
-    <tr>
-      <td>Defense</td>
-      <td>{{ new_bunny.defense }}</td>
+    
+    <p class="box has-background-success has-text-info-light">DEF: 
+    {{ new_bunny.defense }}</p>
       <input type="hidden" name="defense" value="{{ new_bunny.defense }}" />
-    </tr>
-    <tr>
-      <td>Strength</td>
-      <td>{{ new_bunny.strength }}</td>
+    
+    <p class="box has-background-primary has-text-info-light">STR: {{ new_bunny.strength }}</p>
       <input type="hidden" name="strength" value="{{ new_bunny.strength }}" />
-    </tr>
-    <tr>
-      <td>Speed</td>
-      <td>{{ new_bunny.speed }}</td>
+    
+      <p class="box has-background-info has-text-info-light">SPD: {{new_bunny.speed}}</p>
       <input type="hidden" name="speed" value="{{ new_bunny.speed }}" />
-    </tr>
-    <tr>
-      <td>Color</td>
-      <td>{{ new_bunny.color }}</td>
-      <input type="hidden" name="color" value="{{ new_bunny.color }}" />
-    </tr>
-    <tr>
-      <td>Parents</td>
-      <td>{{ bunny_1.name}} , {{buny_2.name}} </td>
-      <input
-        type="hidden"
-        name="parent_1"
-        value="{{bunny_1.name}}:{{bunny_1.id}}"
-      />
-      <input
-        type="hidden"
-        name="parent_2"
-        value="{{bunny_2.name}}:{{bunny_2.id}}"
-      />
-    </tr>
-    <tr>
-      <td>Experience</td>
-      <td>{{ new_bunny.experience }}</td>
+      
+      <p class="box 
+      has-background-danger-light
+      has-text-info"> Experience : {{ new_bunny.experience }}</p>
       <input
         type="hidden"
         name="experience"
         value="{{ new_bunny.experience }}"
       />
-    </tr>
+      
+      <p class="box"> color: {{new_bunny.color}}</p>
+      
+      <input type="hidden" name="color" value="{{ new_bunny.color }}" />
+    Parent one :
+    <p class='has-background-danger-light
+    has-text-centered has-text-info-dark'>{{ bunny_1.name}} </p>
+      <input
+        type="hidden"
+        name="parent_1"
+        value="{{bunny_1.name}}:{{bunny_1.id}}"
+      />
+    
+       Parent two :<p class='has-background-warning-light has-text-centered has-text-info-dark'>
+        {{ bunny_2.name}}</p>
+      <input
+        type="hidden"
+        name="parent_2"
+        value="{{bunny_2.name}}:{{bunny_2.id}}"
+        />
+    
+  
     <input type="hidden" name="t_days" value="10" />
-  </table>
+  <label for="name">All bunnies must have a unique name.</label>
   <input
     type="text"
-    name="name" id='name_field'> Enter a name </input>
+    name="name" id='name_field' placeholder="Enter a Name"> </input>
     <input
     type="hidden"
     name="bunny_id"
     
     value="{{ new_bunny.id }}"/>
   
-  <label for="confirm_checkbox">Are you sure you want to combine {{bunny_1.name}} and {{bunny_2.name}}? this action cannot be undone. </label>
-<input type="checkbox" id="confirm_checkbox" name="confirm">
+  <div class=" box has-background-danger"><label for="confirm_checkbox">Are you sure you want to combine {{bunny_1.name}} and {{bunny_2.name}}? this action cannot be undone. </label>
+<input type="checkbox" id="confirm_checkbox" name="confirm"></div>
   <input type="submit" value="Save Bunny" id='submit_button' disabled/>
 </form>
 
 {% else %}
-<form method="post">
+<form method="post" class='card'> 
+<div class="columns has-text-centered is-justify-content-center is-align-items-center">
   {% csrf_token %}
-  <p>Select Bunny 1:</p>
-  <select name="bunny_1">
-    {% for bunny in bunnies %}
-    <option value="{{ bunny.id }}">{{ bunny.name }}</option>
-    {% endfor %}
-  </select>
-  <p>Select Bunny 2:</p>
-  <select name="bunny_2">
-    {% for bunny in bunnies %}
-    <option value="{{ bunny.id }}">{{ bunny.name }}</option>
-    {% endfor %}
-  </select>
-  <input type="submit" value="Combine" />
+  <div class="column is_half">
+    <div class="box has-background-danger-light"> Select Bunny 1:
+    <select name="bunny_1" class=" menu is-centered">
+      {% for bunny in bunnies %}
+      <option value="{{ bunny.id }}">{{ bunny.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+  <div class= "column is_half">
+    <div class="box has-background-success-light">Select Bunny 2:
+    <select name="bunny_2" class="menu is-centered">
+      {% for bunny in bunnies %}
+      <option value="{{ bunny.id }}">{{ bunny.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
+
+  <input type="submit" value="See Combination" class="box has-background-warning-light" /></div>
 </form>
 
 {% endif %}
-<a href='/home'>return</a>
+<div class="box has-text-centered">
+<a href='/home'>return</a></div>
 <script>
   const name_field = document.getElementById('name_field')
   const confirmCheckbox = document.getElementById('confirm_checkbox');

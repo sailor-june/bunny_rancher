@@ -1,26 +1,48 @@
-<h1>Change Bunny</h1>
+{% extends 'base.html' %} {%block content%}
+<h1 class="box has-text-centered">Change Bunny</h1>
 
-currently current:
-<p>Name: {{ current_bunny.name }}</p>
-<p>HP: {{ current_bunny.hp }}</p>
-<p>Level: {{ current_bunny.level }}</p>
-<p>Intelligence: {{ current_bunny.intell }}</p>
-<p>Defense: {{ current_bunny.defense }}</p>
-<p>Strength: {{ current_bunny.strength }}</p>
-<p>Speed: {{ current_bunny.speed }}</p>
-<p>Color: {{ current_bunny.color }}</p>
-<p>Experience: {{ current_bunny.experience }}</p>
-<p>Owner: {{ current_bunny.owner }}</p>
-<p>Training Days: {{ current_bunny.t_days }}</p>
-
-<form method="post">
-    {% csrf_token %}
-    <label for="bunny">Select a new active bunny:</label>
-    <select name="bunny" id="bunny">
-        {% for bunny in bunnies %}
-            <option value="{{ bunny.id }}">{{ bunny.name }}</option>
-        {% endfor %}
-    </select>
-    <button type="submit">Change Active Bunny</button>
+<div class="box has-text-centered has-background-primary-light">
+  current bun:
+</div>
+<div class="columns">
+  <div class="column">
+    <p class="box has-background-warning">
+      HP: {{ current_bunny.hp }}</p>
+    <p class="box has-background-link has-text-info-light">
+      Intelligence: {{ current_bunny.intell }}
+    </p>
+    <p class="box has-background-success has-text-info-light">
+      Defense: {{ current_bunny.defense }}
+    </p>
+    <p class="box has-background-primary has-text-info-light">
+      Strength: {{ current_bunny.strength }}
+    </p>
+    <p class="box has-background-info has-text-info-light">
+      Speed: {{ current_bunny.speed }}
+    </p>
+  </div>
+  <div class="column">
+    <p class="box">Name: {{ current_bunny.name }}</p>
+    <p class="box">Level: {{ current_bunny.level }}</p>
+    <p class="box">Owner: {{ current_bunny.user }}</p>
+    <p class="box has-background-danger has-text-info-light">
+      Experience: {{ current_bunny.experience }}
+    </p>
+    <p class="box">Training Days Remaining: {{ current_bunny.t_days }}</p>
+  </div>
+</div>
+<p class="box has-text-centered">Color: {{ current_bunny.color }}</p>
+<form method="post" class="card has-text-centered">
+  {% csrf_token %}
+  <label for="bunny">
+    Select a new active bunny:
+  </label>
+  <select name="bunny" id="bunny" class="menu">
+    {% for bunny in bunnies %}
+    <option value="{{ bunny.id }}">{{ bunny.name }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit" class="button is-danger">Change Active Bunny</button>
 </form>
-<a href='/home'>return</a>
+<a href="/home" class="box has-text-centered">return</a>
+{% endblock %}

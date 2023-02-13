@@ -1,58 +1,49 @@
+{% extends 'base.html'%}{%block content %}
 <form action="{% url 'add_bunny' %}" method="post">
   {% csrf_token %}
-  <table>
-    <tr>
-      <th>Attribute</th>
-      <th>Value</th>
-    </tr>
-    <tr>
-      <td>HP</td>
-      <td>{{ bunny.hp }}</td>
-      <input type="hidden" name="hp" value="{{ bunny.hp }}">
-    </tr>
-    <tr>
-      <td>Level</td>
-      <td>{{ bunny.level }}</td>
-      <input type="hidden" name="level" value="{{ bunny.level }}">
-    </tr>
-    <tr>
-      <td>Intelligence</td>
-      <td>{{ bunny.intell }}</td>
-      <input type="hidden" name="intell" value="{{ bunny.intell }}">
-    </tr>
-    <tr>
-      <td>Defense</td>
-      <td>{{ bunny.defense }}</td>
-      <input type="hidden" name="defense" value="{{ bunny.defense }}">
-    </tr>
-    <tr>
-      <td>Strength</td>
-      <td>{{ bunny.strength }}</td>
-      <input type="hidden" name="strength" value="{{ bunny.strength }}">
-    </tr>
-    <tr>
-      <td>Speed</td>
-      <td>{{ bunny.speed }}</td>
-      <input type="hidden" name="speed" value="{{ bunny.speed }}">
-    </tr>
-    <tr>
-      <td>Color</td>
-      <td>{{ bunny.color }}</td>
-      <input type="hidden" name="color" value="{{ bunny.color }}">
-    </tr>
-    <tr>
-      <td>Experience</td>
-      <td>{{ bunny.experience }}</td>
-      <input type="hidden" name="experience" value="{{ bunny.experience }}">
-    </tr>
-    <input type="hidden" name="t_days" value=10 >
-  </table>
-  <br>
-  <label for="name">Enter a Name:</label>
-  <input type="text" id="name" name="name">
-  <br><br>
-  <input type="hidden" name="parent_1" value='' >
-  <input type="hidden" name="parent_2" value='' >
-  <input type="submit" value="Add to Collection">
+  <div class="box has-text-centered"> Generate a New Bunny </div>
+  <div class="card has-text-centered">
+      <div class="box has-background-danger">
+        HP : {{ bunny.hp }}
+      </div>      
+      <div class="box has-background-link has-text-info-light">
+        Intelligence : {{ bunny.intell }}
+    </div>
+      <input type="hidden" name="intell" value="{{ bunny.intell }}" />
+      <div class="box has-background-success has-text-info-light">
+        Defense : {{ bunny.defense }}</div>
+      
+      <div class="box has-background-primary">
+        Strength : {{ bunny.strength }}
+      </div>
+      <div class ="box has-background-info has-text-info-light">
+        Speed : {{ bunny.speed }}</div>
+        <div class="box">
+          Color : {{ bunny.color }} 
+        </div>
+        
+        
+      <input type="hidden" name="hp" value="{{ bunny.hp }}" />
+      <input type="hidden" name="level" value="{{ bunny.level }}" />
+      <input type="hidden" name="strength" value="{{ bunny.strength }}" />
+      <input type="hidden" name="speed" value="{{ bunny.speed }}" />
+      <input type="hidden" name="color" value="{{ bunny.color }}" />
+      <input type="hidden" name="defense" value="{{ bunny.defense }}" />
+      <input type="hidden" name="experience" value="{{ bunny.experience }}" />
+      <input type="hidden" name="t_days" value="10" />
+      <input type="hidden" name="parent_1" value="none" />
+      <input type="hidden" name="parent_2" value="none" />
+      
+      
+      <br />
+      <div class="columns is-justify-content-center">
+        <dov class="column is-one-third">
+      <label for="name"class="box" >All bunnies must have a unique Name:</label>
+      <input class="box"type="text" id="name" name="name" placeholder="enter a name" />
+      <input class="box"type="submit" value="Add to Collection" />
+        </div>
+      </div>
 </form>
-<a href='/generate'><button>GENERATE ANOTHER BUN</button></a>
+<a href={% url 'generate_bunny'%} class="box has-background-primary has-text-info-light has-text-centered">GENERATE ANOTHER BUN</a>
+<a href={% url 'home'%} class="box has-background-link has-text-info-light has-text-centered">return home</a>
+{%endblock%}

@@ -1,26 +1,36 @@
 {% extends 'base.html' %} {% block content %}
+{%load static%}
+<h1 class="box">bunny Detail</h1>
 
-<h1>bunny Detail</h1>
-<a href='/bunnies/train/{{bunny.id}}/'>train bun</a>
 
 <div class="card">
-  <div class="content columns">
+  <div class=" columns is-justify-content-center">
     
-    <div class="card column is-one-third">
-    <p class="button is-warning">HP: {{bunny.hp}}</p>
-    <p class="button is-link">INT: {{bunny.intell}}</p>
-    <p class="button is-success">DEF: {{bunny.defense}}</p>
-    <p class="button is-primary">STR: {{bunny.strength}}</p>
-    <p class="button is-info">SPD: {{bunny.speed}}</p>
-    <p class="button is-danger">EXP: {{bunny.experience}}</p>
-   <div class='box is-link'> PARENTS: <section class='button is-danger is-light'>{{bunny.parent_1}}</section> , <section class='button is-primary is-light'>{{bunny.parent_2}}</section></div>
+    <div class="column is-one-third">
+    <p class="box has-background-warning ">HP: {{bunny.hp}}</p>
+    <p class="box has-background-link has-text-info-light">INT: {{bunny.intell}}</p>
+    <p class="box has-background-success has-text-info-light">DEF: {{bunny.defense}}</p>
+    <p class="box has-background-primary has-text-info-light">STR: {{bunny.strength}}</p>
+    <p class="box has-background-info has-text-info-light">SPD: {{bunny.speed}}</p>
+    <p class="box has-background-danger
+    has-text-info-light">EXP: {{bunny.experience}}</p>
+   <div class='box
+    has-background-link
+    has-text-centered
+    has-text-info-light'> 
+    PARENTS: 
+      <p class='has-background-danger-light
+                has-text-centered has-text-info-dark'>{{bunny.parent_1}}</p>  <p class='has-background-warning-light has-text-centered has-text-info-dark'>{{bunny.parent_2}}</p></div>
   </div>
-  <div class='card column is-half'>
+  <div class='column is-half'>
+    <div class="box is-align-self-flex-end"><img src="{% static '/' %}{{ object.color }}.png">
     name: {{ bunny.name }}
     Level: {{bunny.level}}
     </div>
+  </div>
 </div>
 </div>
-
+<a class="box has-text-centered" href='/bunnies/train/{{bunny.id}}/'>Train This Bun</a>
+<a class="box has-text-centered has-background-link has-text-info-light" href='/home/'>Return home</a>
 
 {% endblock %}

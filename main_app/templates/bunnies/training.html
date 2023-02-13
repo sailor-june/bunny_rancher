@@ -1,42 +1,62 @@
 {% extends 'base.html' %} {% block content %}
 
-<h1>bunny Training</h1>
-<a href='/bunnies/'>return</a>
+<div class="card has-text-centered">
+  <h1 class="box">Bunny Training</h1>
+  <div class="columns is-justify-content-space-evenly is has-text-centered">
+    <div class="column">
+      <form action="{% url 'add_strength' pk=bunny.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Train Strength" class="button is-primary" />
+      </form>
+      <form action="{% url 'add_speed' pk=bunny.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Train Speed" class="button is-info" />
+      </form>
+    </div>
+    <div class="column">
+      <form action="{% url 'add_defense' pk=bunny.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Train Defense" class="button is-success" />
+      </form>
 
-<form action="{% url 'add_strength' pk=bunny.pk %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Add Strength">
-</form>
-
-<form action="{% url 'add_speed' pk=bunny.pk %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Add Speed">
-</form>
-
-<form action="{% url 'add_defense' pk=bunny.pk %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Add Defense">
-</form>
-
-<form action="{% url 'add_intell' pk=bunny.pk %}" method="post">
-  {% csrf_token %}
-  <input type="submit" value="Add Intelligence">
-</form>
-
-<div class="card">
-  <div class="content">
-    name:{{ bunny.name }}
-    Level:{{bunny.level}}
-    HP: {{bunny.hp}}
-    INT:{{bunny.intell}}
- DEF:{{bunny.defense}}
- STR:{{bunny.strength}}
- SPD:{{bunny.speed}}
- EXP:{{bunny.experience}}
- DAYS UNTIL RETIREMENT:{{bunny.t_days}}
-
+      <form action="{% url 'add_intell' pk=bunny.pk %}" method="post">
+        {% csrf_token %}
+        <input
+          type="submit"
+          value="Train Intelligence"
+          class="button is-link"
+        />
+      </form>
+    </div>
   </div>
 </div>
+<div class="card has-text-centered">
+  <div class="content">
+    <p class="box">name:{{ bunny.name }} Level:{{bunny.level}}</p>
+    <p class="box has-background-primary has-text-info-light">
+      STR: {{bunny.strength}}
+    </p>
+    <p class="box has-background-info has-text-info-light">
+      SPD: {{bunny.speed}}
+    </p>
+    <p class="box has-background-warning">HP: {{bunny.hp}}</p>
+    <p class="box has-background-success has-text-info-light has">
+      DEF: {{bunny.defense}}
+    </p>
+    <p class="box has-background-link has-text-info-light">
+      INT: {{bunny.intell}}
+    </p>
+    <p class="box has-background-danger has-text-info-light">
+      EXP: {{bunny.experience}}
+    </p>
+    <div class="box has-background-danger-light has-text-centered has-text-info">
+      DAYS UNTIL RETIREMENT:{{bunny.t_days}}
+      <div></div>
+    </div>
 
-
-{% endblock %}
+    
+  </div>
+</div>
+<a href="/bunnies/" class="box has-text-centered has-background-link has-text-info-light">
+  return</a>
+  {% endblock %}

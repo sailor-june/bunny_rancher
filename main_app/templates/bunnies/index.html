@@ -1,21 +1,19 @@
 {% extends 'base.html' %} {% block content %}
+<h1 class="box has-text-centered">
+View All Bunnies
+</h1>
 
-<h1>bunny List</h1>
-
-<div class='block is-centered'>
-  <div class= 'column is-half'>
+  <div class= 'card'>
 {% for bunny in bunnies %}
 
 <div class="card column has-text-centered">
   <a href='/bunnies/{{ bunny.id }}'>
-  <div class="content">
     {{bunny.name}}
-  </div>
 </a>
 </div>
 
 
 {% endfor %}
-<a href="/home">return</a></div>
+<a href="/home" class='box has-text-centered has-background-link has-text-info-light'>return</a>
 </div>
 {% endblock %}
