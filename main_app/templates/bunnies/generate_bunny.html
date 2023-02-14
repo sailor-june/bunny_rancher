@@ -19,7 +19,7 @@
       <div class ="box has-background-info has-text-info-light">
         Speed : {{ bunny.speed }}</div>
         <div class="box">
-          Color : {{ bunny.color }} 
+        Color : {{ bunny.color }} 
         </div>
         
         
@@ -46,4 +46,4 @@
 </form>
 <a href={% url 'generate_bunny'%} class="box has-background-primary has-text-info-light has-text-centered">GENERATE ANOTHER BUN</a>
 <a href={% url 'home'%} class="box has-background-link has-text-info-light has-text-centered">return home</a>
-{%endblock%}
+{% endblock %}

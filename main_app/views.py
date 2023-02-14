@@ -15,14 +15,18 @@ from django.http import HttpResponse
 
 
 def change_bunny(request):
-    current_bunny = Bunny.objects.filter(user=request.user.id, active=False)
-    bunnies = Bunny.objects.exclude(id=current_bunny.id)
+    if Bunny.objects.filter(user=request.user.id, active=True):
+        current_bunny=Bunny.objects.filter(user=request.user.id, active=True)
+    bunnies = Bunny.objects.filter(user=request.user.id)
+    
 
     if request.method == "POST":
-        
+        bunnies = Bunny.objects.filter(user=request.user.id)
+        if Bunny.objects.get(user=request.user.id, active=True):
+            current_bunny=Bunny.objects.get(user=request.user.id, active=True)
+            current_bunny.active = False
+            current_bunny.save()
         new_bunny_id = request.POST.get("bunny")
-        current_bunny.active = False
-        current_bunny.save()
         new_bunny = Bunny.objects.get(id=new_bunny_id)
         new_bunny.active = True
         new_bunny.save()
@@ -152,8 +156,7 @@ def combine_bunny(request):
         # Get the two selected bunnies from the database
         b1 = Bunny.objects.get(id=b1_id)
         b2 = Bunny.objects.get(id=b2_id)
-        if b1.active or b2.active:
-            return redirect('combine_bunnies')
+        
         # Generate a new bunny with the average stats of the two selected bunnies
         new_bunny = Bunny(
             hp=int(math.floor(b1.hp + b2.hp) / 2),
@@ -226,8 +229,8 @@ def bunnies_detail(request, bunny_id):
 
 
 def training_index(request, pk):
-    if Bunny.objects.filter(user=request.user.id, active=True):
-        bunny = Bunny.objects.filter(user=request.user.id, active=True)
+    if Bunny.objects.get(user=request.user.id, active=True):
+        bunny = Bunny.objects.get(user=request.user.id, active=True)
         
         return render(request, "bunnies/training.html", {"bunny": bunny})
     else:
