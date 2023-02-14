@@ -16,8 +16,6 @@ cryptography==3.4.8
 
 dbus-python==1.2.18
 
-distro==1.7.0
-distro-info===1.1build1
 dj-database-url==1.2.0
 Django==4.1.5
 django-on-heroku==1.1.2
