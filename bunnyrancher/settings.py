@@ -77,10 +77,13 @@ WSGI_APPLICATION = 'bunnyrancher.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bunnyrancher',
+        'NAME': 'sailor-june/bunnyrancher',
+        'USER': 'sailor-june',
+        'PASSWORD': 'v2_3z6tz_xyf4CxNLvhgU2hW9W3mUgaF',
+        'HOST': 'db.bit.io',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

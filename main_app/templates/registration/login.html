@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 {%block content%}
+{% load static %}
 <h1>login</h1>
-<form action='' method='POST'>
+<form action={% url 'login'%} method='POST' class="card has-text-centered is-justify-content-center">
     {%csrf_token%}
-    {{form.as_p}}
-    <input type="submit" value="log in" />
-    <input type="hidden" name="next" value="{{ next }}" />
+    {{ form.as_p }}
+    <input type="submit" value="log in" class="button  is-primary is-justify-self-center"/><br>
+    
 </form>
+<div class="card has-text-centered is-justify-content-center">
+    <a href="{% url 'signup' %}" class="button is-warning"> Sign up</a><br>
+    <img src="{% static '/BUNNY.gif' %}"></img>
+    <h1 class="box is-size-1 has-text-centered"> 
+    WELCOME TO BUNNY RANCHER!
+    acquire, grow, and merge bunnies to make the MOST ULTIMATE POWERFUL BUN!
+    </h1>
+</div>
 
-{%endblock%}
+{% endblock %}

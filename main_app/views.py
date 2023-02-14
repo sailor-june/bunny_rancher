@@ -191,6 +191,7 @@ class BunnyDetail(DetailView):
 
 def sign_up(request):
     error_message=''
+
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -210,6 +211,8 @@ def sign_up(request):
 
 
 def home(request):
+    if request.user.is_anonymous: 
+        return render(request, 'registration/login.html')
     # bunny = Bunny.objects.filter(user=request.user.id, active=True)
     return render(request, "home.html")
 
@@ -235,13 +238,6 @@ def training_index(request, pk):
     # else:
     #     return render(request, "home.html")
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sailor-june/bunnyrancher',
-        'USER': 'sailor-june',
-        'PASSWORD': 'v2_3z6tz_xyf4CxNLvhgU2hW9W3mUgaF',
-        'HOST': 'db.bit.io',
-        'PORT': '5432',
-    }
-}
+
+
+    
