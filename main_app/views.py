@@ -235,3 +235,14 @@ def training_index(request, pk):
         return render(request, "bunnies/training.html", {"bunny": bunny})
     else:
         return render(request, "home.html")
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sailor-june/bunnyrancher',
+        'USER': 'sailor-june',
+        'PASSWORD': 'v2_3z6tz_xyf4CxNLvhgU2hW9W3mUgaF',
+        'HOST': 'db.bit.io',
+        'PORT': '5432',
+    }
+}
