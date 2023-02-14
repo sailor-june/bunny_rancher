@@ -14,34 +14,34 @@ from .models import Bunny
 from django.http import HttpResponse
 
 
-def change_bunny(request):
-    if Bunny.objects.filter(user=request.user.id, active=True):
-        current_bunny=Bunny.objects.filter(user=request.user.id, active=True)
-    bunnies = Bunny.objects.filter(user=request.user.id)
+# def change_bunny(request):
+#     if Bunny.objects.filter(user=request.user.id, active=True):
+#         current_bunny=Bunny.objects.filter(user=request.user.id, active=True)
+#     bunnies = Bunny.objects.filter(user=request.user.id)
     
 
-    if request.method == "POST":
-        bunnies = Bunny.objects.filter(user=request.user.id)
-        if Bunny.objects.get(user=request.user.id, active=True):
-            current_bunny=Bunny.objects.get(user=request.user.id, active=True)
-            current_bunny.active = False
-            current_bunny.save()
-        new_bunny_id = request.POST.get("bunny")
-        new_bunny = Bunny.objects.get(id=new_bunny_id)
-        new_bunny.active = True
-        new_bunny.save()
-        return redirect("change_bunny")
+#     if request.method == "POST":
+#         bunnies = Bunny.objects.filter(user=request.user.id)
+#         if Bunny.objects.get(user=request.user.id, active=True):
+#             current_bunny=Bunny.objects.get(user=request.user.id, active=True)
+#             current_bunny.active = False
+#             current_bunny.save()
+#         new_bunny_id = request.POST.get("bunny")
+#         new_bunny = Bunny.objects.get(id=new_bunny_id)
+#         new_bunny.active = True
+#         new_bunny.save()
+#         return redirect("change_bunny")
 
-    if (Bunny.objects.get(user=request.user.id, active=True)):
-        context = {
-            "current_bunny": current_bunny,
-            "bunnies": bunnies,
-        }
-    else: 
-        context={
-            "bunnies":bunnies
-        }
-    return render(request, "change_bunny.html", context)
+#     if (Bunny.objects.get(user=request.user.id, active=True)):
+#         context = {
+#             "current_bunny": current_bunny,
+#             "bunnies": bunnies,
+#         }
+#     else: 
+#         context={
+#             "bunnies":bunnies
+#         }
+#     return render(request, "change_bunny.html", context)
 
 
 def add_strength(request, pk):
@@ -84,7 +84,7 @@ def create_bunny(request):
         experience=0,
         user=request.user,
         name="",
-        active=False,
+        #active=False,
         parent_1='',
         parent_2=''
     )
@@ -118,7 +118,7 @@ def add_bunny(request):
             speed=speed,
             color=color,
             t_days=10,
-            active=False,
+            #active=False,
             experience=experience,
             user=request.user,
             parent_1=parent_1,
@@ -127,7 +127,7 @@ def add_bunny(request):
         
         if request.POST.get("confirm") == 'on':
             colors = ["Red","Orange","Yellow","Green", "Blue", "Purple"]
-            bunny.active=True
+            # bunny.active=True
             bunny.color = random.choice(colors)
             bunny.save()
 
@@ -170,7 +170,7 @@ def combine_bunny(request):
             user= request.user,
             name="New Bunny",
             t_days=10,
-            active=False,
+            #active=False,
         )
         
         
@@ -210,8 +210,8 @@ def sign_up(request):
 
 
 def home(request):
-    bunny = Bunny.objects.filter(user=request.user.id, active=True)
-    return render(request, "home.html", {"bunny": bunny})
+    # bunny = Bunny.objects.filter(user=request.user.id, active=True)
+    return render(request, "home.html")
 
 
 def about(request):
@@ -229,12 +229,11 @@ def bunnies_detail(request, bunny_id):
 
 
 def training_index(request, pk):
-    if Bunny.objects.get(user=request.user.id, active=True):
-        bunny = Bunny.objects.get(user=request.user.id, active=True)
-        
-        return render(request, "bunnies/training.html", {"bunny": bunny})
-    else:
-        return render(request, "home.html")
+    bunny = Bunny.objects.get(user=request.user.id, pk=pk)
+    return render(request, "bunnies/training.html", {"bunny": bunny})
+    #     bunny = Bunny.objects.get(user=request.user.id, active=True)   
+    # else:
+    #     return render(request, "home.html")
 
 DATABASES = {
     'default': {

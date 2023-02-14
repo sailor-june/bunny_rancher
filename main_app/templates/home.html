@@ -5,19 +5,21 @@
   {% if user.is_authenticated %}
   <a href="{% url 'logout' %}" class="is-centered">log out </a>
 </div>
-<div class="container columns is-justify-content-space-evenly is-centered">
+<div class="card columns is-justify-content-space-evenly is-centered">
   <div class="barn card column is-half has-text-centered">
     <div class="box has-text-centered"><img src="{% static '/barn.png' %}" /></div>
-    
     <br />
     <div class="columns is-justify-content-center ">
       <div class="column is-one-third ">
-      <a href="/bunnies" class="box has-background-link has-text-info-light">-view buns</a> <br />
-      <a href="/bunnies/change_bunny" class="box has-background-link has-text-info-light ">
+        <a href="/bunnies" class="box has-background-link has-text-info-light">-view buns</a> <br />
+      </div>
+    
+    {% comment %}   <a href="/bunnies/change_bunny" class="box has-background-link has-text-info-light ">
         -Change active bun</a>                                                       
-      <br/>
+      </div>
+      <br/> {% endcomment %}
+    </div>
       
-      </div></div>
   </div>
 
   <div class="town card column is-half has-text-centered">
