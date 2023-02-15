@@ -128,6 +128,9 @@ def add_bunny(request):
         if request.POST.get("confirm") == 'on':
             colors = ["Red","Orange","Yellow","Green", "Blue", "Purple"]
             # bunny.active=True
+            gold_amount=(int(bunny.hp) + int(bunny.level))/2
+            request.user.profile.get_gold(gold_amount)
+            request.user.profile.save()
             bunny.color = random.choice(colors)
             bunny.save()
 
@@ -214,7 +217,7 @@ def home(request):
     if request.user.is_anonymous: 
         return render(request, 'registration/login.html')
     # bunny = Bunny.objects.filter(user=request.user.id, active=True)
-    return render(request, "home.html")
+    return render(request, "home.html",{"profile":request.user.profile})
 
 
 def about(request):

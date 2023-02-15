@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.db import models
 import random
 
@@ -22,7 +23,8 @@ class Bunny(models.Model):
         parent_1 = models.CharField(max_length=200)
         parent_2= models.CharField(max_length=200)
 
-
+        def level_up(self):
+                self.level+=1
 
         def add_str(self):
                 if self.t_days==0:
@@ -68,13 +70,23 @@ class Bunny(models.Model):
                         self.defense +=(dice_a)
                         self.strength -=(dice_b)
 
-        def put_away(self):
-                self.active=False 
-        def take_out(self):
-                self.active=True  
-# bunnies= [
-#     Bunny('Alpha', 1, 0, 10, 5, 5, 5, 5, 'RED', 0000, False),
-#     Bunny('Alpha', 1, 0, 10, 5, 5, 5, 5, 'BLUE', 0000, False),
-#     Bunny('Alpha', 1, 0, 10, 5, 5, 5, 5, 'YELLOW', 0000, False)
+        # def put_away(self):
+        #         self.active=False 
+        # def take_out(self):
+        #         self.active=True  
 
-# ]
+class Profile(models.Model):
+        
+        user = models.OneToOneField(User, on_delete=models.CASCADE)
+        gold= models.IntegerField()
+        def get_gold(self, amount):
+                self.gold += (amount)
+
+        @receiver(post_save, sender=User)
+        def create_user_profile(sender, instance, created, **kwargs):
+                if created:
+                        Profile.objects.create(user=instance, gold=0)
+
+        @receiver(post_save, sender=User)
+        def save_user_profile(sender, instance, **kwargs):
+                instance.profile.save()

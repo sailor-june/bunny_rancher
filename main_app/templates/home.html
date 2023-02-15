@@ -3,7 +3,7 @@
 <div class="box has-text-centered">
   <h1>HOME</h1>
   {% if user.is_authenticated %}
-  <a href="{% url 'logout' %}" class="is-centered">log out </a>
+  <a href="{% url 'logout' %}" class="is-centered">log out </a> total gold: {{profile.gold}}
 </div>
 <div class="card columns is-justify-content-space-evenly is-centered">
   <div class="barn card column is-half has-text-centered">
